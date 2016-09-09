@@ -26,7 +26,7 @@ for edi in range(1974,1770,-1):
         if 'gFld(' in row:
             fldKey      = row[0:row.find(' = ')]
             fldVal      = row[row.find('gFld(')+5:row.find(');')] \
-                          .split(', ')[0][1:-1].decode('iso-8859-1').encode('utf8')
+                          .split(', ')[0][1:-1].encode('utf8')
             folders.append(dict(fldKey=fldKey, fldVal=fldVal))
         elif 'addChild(' in row:
             materia     = row[row.find('([')+2:row.find('])')].split('", "')
