@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+
+
+  <title>DOM-RJ, matérias</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script>
+  $( function() {  // ONLOAD
+
+	    var materias = [
+		100150, 100157, 101255, 10200, 102207, 102637, 103008, 103431, 105866, 106315, 108714, 108959, 109220, 110242, 
+		111922, 112585, 112731, 113255, 113291, 113548, 113642, 116265, 11630, 116484, 116485, 11669, 116946, 117148, 
+		11813, 118905, 120484, 121481, 122110, 122159, 122271, 123369, 123708, 124030, 125763, 127682, 128133, 129059, 
+		12906, 130047, 130217, 130239, 135522, 136264, 136426, 136717, 137031, 137230, 140599, 145981, 147381, 147495, 
+		147821, 148302, 148602, 149873, 150323, 150807, 151434, 151680, 151915, 152908, 153145, 154440, 155336, 156212, 
+		156773, 157807, 158562, 160367, 160873, 161209, 161364, 161925, 162094, 162342, 162473, 163850, 164924, 165263, 
+		165578, 165653, 165702, 167078, 167115, 167605, 168108, 168757, 168952, 169388, 169420, 169908, 170611, 170614, 
+		170838, 171481, 17157, 17170, 172117, 172126, 174591, 174684, 174807, 175166, 175671, 176314, 177245, 177370, 
+		178524, 178610, 17931, 179546, 179611, 179692, 180087, 180445, 180843, 182132, 182331, 182937, 183896, 184263, 
+		184749, 184827, 185269, 185730, 185800, 186453, 187641, 187689, 188554, 190354, 190787, 191063, 192080, 192158, 
+		192569, 193080, 193274, 193671, 195875, 196339, 196470, 196474, 199827, 199893, 200778, 201460, 201926, 203836, 
+		204524, 204711, 204763, 207121, 207776, 209224, 209522, 210000, 212137, 212588, 213020, 213089, 213666, 214657, 
+		216418, 216714, 216928, 217265, 217535, 217653, 217857, 21812, 218327, 218332, 218405, 218564, 220135, 220291, 
+		220314, 221307, 222127, 222151, 222328, 222751, 222782, 223167, 223828, 224051, 225155, 225351, 225368, 226501, 
+		226539, 227799, 227981, 227986, 227988, 228204, 228410, 228804, 229084, 229925, 230240, 230475, 231296, 231316, 
+		231471, 2328, 233240, 233725, 233889, 235081, 235460, 235581, 235766, 237033, 237757, 238930, 239552, 240142, 
+		240441, 241922, 242791, 242959, 24377, 245246, 245398, 245503, 246843, 247159, 247421, 248168, 248560, 249832, 
+		250515, 250640, 250685, 250714, 25114, 252089, 25259, 252768, 254971, 255577, 260769, 260855, 262185, 264492, 
+		265009, 26574, 266240, 266304, 267321, 268194, 268796, 268845, 268933, 269001, 269078, 269213, 270814, 271079, 
+		273691, 273725, 274566, 275858, 276617, 277108, 277121, 277469, 279049, 280729, 280936, 281338, 282350, 283707, 
+		284488, 28596, 287599, 288433, 289631, 289729, 292348, 29240, 29269, 29270, 293988, 295494, 296863, 297037, 
+		297781, 298467, 298679, 298831, 299853, 302917, 303252, 303649, 303959, 304603, 304758, 305904, 305907, 306420, 
+		306727, 30738, 307478, 309536, 310091, 311096, 31128, 311414, 312265, 313081, 313279, 313289, 313315, 314884, 
+		314892, 315084, 317664, 31768, 317765, 317940, 318228, 318389, 318882, 320009, 3200, 320882, 321330, 323181, 
+		324155, 325462, 327967, 329747, 329954, 329957, 330109, 330819, 332564, 332688, 332691, 332692, 332924, 332950, 
+		333638, 334565, 335811, 34362, 3481, 3535, 37783, 38252, 38444, 38650, 39102, 39643, 41018, 4196, 43314, 43794, 
+		43871, 45462, 45883, 46026, 46660, 46674, 4672, 47241, 47473, 47945, 49346, 50100, 50201, 50758, 51638, 52192, 
+		52994, 53526, 53609, 53856, 55998, 56689, 58101, 59519, 59955, 64098, 64147, 64840, 65026, 65039, 65139, 65422, 
+		66359, 68954, 69614, 70402, 70578, 70747, 7186, 72911, 74628, 75089, 75521, 79990, 80085, 80660, 82298, 83805, 
+		84201, 85161, 8838, 88480, 88801, 89280, 89721, 90222, 92168, 92608, 94012, 95153, 96622, 97979, 98256, 98872, 99173
+	    ];
+	    var availableTags = materias.map(function(item) {
+		    return String(item);
+	     });
+
+	    $('#materia').html( $('#lista').html() );
+
+	    $( "#tags" ).autocomplete({
+		//source: availableTags,
+		source: function( request, response ) {
+		  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+		  response( $.grep( availableTags, function( item ){
+		      return matcher.test( item );
+		  }) );
+		},
+		change: function( event, ui ) {
+			if (ui!==null) pegaMateria(ui.item.value);
+		}
+	    });
+
+	  } ); //ONLOAD
+
+
+  function pegaMateria(x){
+	var url = './html/'+x+".htm";
+	$('#materia').load(url);
+  }
+  function pegaMateriaObj(obj){
+	var x=$(obj).text(); 
+	$("#tags").val( x );
+	pegaMateria(x);
+	return false;
+  }
+  </script>
+
+</head>
+<body>
+ 
+<div class="ui-widget">
+  Diário Oficial do Rio, ver <label for="tags">Matéria nº  </label>
+  <input id="tags"> <button id="nada">ok</button>
+ ou <a href="#" onclick="$('#materia').html( $('#lista').html() ); return false;">listar todas</a>.
+</div>
+<hr/>
+ <div style="background-color:#DDD; padding:3em" id="materia"></div>
+
+ <div style="display:none" id="lista">
+
+<a href='#' onclick='return pegaMateriaObj(this)'>100150</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>100157</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>101255</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>10200</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>102207</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>102637</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>103008</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>103431</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>105866</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>106315</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>108714</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>108959</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>109220</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>110242</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>111922</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>112585</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>112731</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>113255</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>113291</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>113548</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>113642</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>116265</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>11630</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>116484</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>116485</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>11669</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>116946</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>117148</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>11813</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>118905</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>120484</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>121481</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>122110</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>122159</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>122271</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>123369</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>123708</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>124030</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>125763</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>127682</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>128133</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>129059</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>12906</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>130047</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>130217</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>130239</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>135522</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>136264</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>136426</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>136717</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>137031</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>137230</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>140599</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>145981</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>147381</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>147495</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>147821</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>148302</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>148602</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>149873</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>150323</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>150807</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>151434</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>151680</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>151915</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>152908</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>153145</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>154440</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>155336</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>156212</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>156773</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>157807</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>158562</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>160367</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>160873</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>161209</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>161364</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>161925</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>162094</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>162342</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>162473</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>163850</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>164924</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>165263</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>165578</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>165653</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>165702</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>167078</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>167115</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>167605</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>168108</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>168757</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>168952</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>169388</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>169420</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>169908</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>170611</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>170614</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>170838</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>171481</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>17157</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>17170</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>172117</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>172126</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>174591</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>174684</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>174807</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>175166</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>175671</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>176314</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>177245</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>177370</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>178524</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>178610</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>17931</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>179546</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>179611</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>179692</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>180087</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>180445</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>180843</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>182132</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>182331</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>182937</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>183896</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>184263</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>184749</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>184827</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>185269</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>185730</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>185800</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>186453</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>187641</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>187689</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>188554</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>190354</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>190787</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>191063</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>192080</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>192158</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>192569</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>193080</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>193274</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>193671</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>195875</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>196339</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>196470</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>196474</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>199827</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>199893</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>200778</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>201460</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>201926</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>203836</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>204524</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>204711</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>204763</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>207121</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>207776</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>209224</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>209522</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>210000</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>212137</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>212588</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>213020</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>213089</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>213666</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>214657</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>216418</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>216714</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>216928</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>217265</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>217535</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>217653</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>217857</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>21812</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>218327</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>218332</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>218405</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>218564</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>220135</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>220291</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>220314</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>221307</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>222127</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>222151</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>222328</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>222751</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>222782</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>223167</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>223828</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>224051</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>225155</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>225351</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>225368</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>226501</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>226539</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>227799</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>227981</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>227986</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>227988</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>228204</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>228410</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>228804</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>229084</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>229925</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>230240</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>230475</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>231296</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>231316</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>231471</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>2328</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>233240</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>233725</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>233889</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>235081</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>235460</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>235581</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>235766</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>237033</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>237757</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>238930</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>239552</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>240142</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>240441</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>241922</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>242791</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>242959</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>24377</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>245246</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>245398</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>245503</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>246843</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>247159</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>247421</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>248168</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>248560</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>249832</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>250515</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>250640</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>250685</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>250714</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>25114</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>252089</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>25259</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>252768</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>254971</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>255577</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>260769</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>260855</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>262185</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>264492</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>265009</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>26574</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>266240</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>266304</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>267321</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>268194</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>268796</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>268845</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>268933</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>269001</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>269078</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>269213</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>270814</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>271079</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>273691</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>273725</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>274566</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>275858</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>276617</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>277108</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>277121</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>277469</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>279049</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>280729</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>280936</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>281338</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>282350</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>283707</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>284488</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>28596</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>287599</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>288433</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>289631</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>289729</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>292348</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>29240</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>29269</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>29270</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>293988</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>295494</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>296863</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>297037</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>297781</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>298467</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>298679</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>298831</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>299853</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>302917</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>303252</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>303649</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>303959</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>304603</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>304758</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>305904</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>305907</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>306420</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>306727</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>30738</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>307478</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>309536</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>310091</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>311096</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>31128</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>311414</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>312265</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>313081</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>313279</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>313289</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>313315</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>314884</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>314892</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>315084</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>317664</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>31768</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>317765</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>317940</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>318228</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>318389</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>318882</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>320009</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>3200</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>320882</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>321330</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>323181</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>324155</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>325462</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>327967</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>329747</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>329954</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>329957</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>330109</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>330819</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>332564</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>332688</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>332691</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>332692</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>332924</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>332950</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>333638</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>334565</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>335811</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>34362</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>3481</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>3535</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>37783</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>38252</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>38444</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>38650</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>39102</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>39643</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>41018</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>4196</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>43314</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>43794</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>43871</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>45462</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>45883</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>46026</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>46660</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>46674</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>4672</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>47241</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>47473</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>47945</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>49346</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>50100</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>50201</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>50758</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>51638</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>52192</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>52994</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>53526</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>53609</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>53856</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>55998</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>56689</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>58101</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>59519</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>59955</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>64098</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>64147</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>64840</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>65026</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>65039</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>65139</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>65422</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>66359</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>68954</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>69614</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>70402</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>70578</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>70747</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>7186</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>72911</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>74628</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>75089</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>75521</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>79990</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>80085</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>80660</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>82298</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>83805</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>84201</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>85161</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>8838</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>88480</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>88801</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>89280</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>89721</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>90222</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>92168</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>92608</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>94012</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>95153</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>96622</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>97979</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>98256</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>98872</a> &#160; 
+<a href='#' onclick='return pegaMateriaObj(this)'>99173</a> &#160; 
+
+</div>
+
+</body>
+</html>
