@@ -1,12 +1,10 @@
-`queriDO` ou  "meu querido diario"...
-
-Versão machine-readable do Diário Oficial do Município do Rio de Janeiro. [Clique aqui para testar!](https://okfn-brasil.github.io/queriDO/).
+`queriDO` ou  **"nosso Querido Diario Oficial"**... Por uma versão *machine-readable* do Diário Oficial do Município do Rio de Janeiro. [Clique aqui para testar!](https://okfn-brasil.github.io/queriDO/).
 
 ## Equipe
 
 O projeto ainda  "gratis" e inscipiente, precisamos de voluntários.
 
-Estamos aguardando a sua participação!  Participe para sentir a "mão-na-massa", dar sua opinião... E se gostar, escolha suas metas-pé-no-chão... E continue participando: mesmo que pouco, é importante preservar a frequência mínima de participação de todos os envolvidos numa meta, sempre aparece mais um para ajudar se ver mais gente participando.
+Estamos aguardando a sua participação!  Participe para sentir a "mão-na-massa", dar sua opinião... E se gostar, escolha suas metas-pé-no-chão... E continue participando: mesmo que pouco, é importante preservar a frequência mínima de participação, de todos os envolvidos numa meta: sempre aparece mais um para ajudar, se ver os envolvidos por perto, acolhendo e tomando conta.
 
 ## Objetivo
 Até que a equipe deixe de ser flutuante, as metas permanecerão meio indefinidas, por hora as principais:
@@ -29,9 +27,4 @@ O [acidente da ciclovia Tim Maia, obra da Concremat](http://brasil.elpais.com/br
 
 O Diário Oficial é como um blog, importantíssimo, mas que "ninguém" lê. 
 Um Diário que é "aberto" apenas por alguns usuários descontentes. 
-Na tentativa de torná-lo aberto e reutilizável, não só no formato, mas na linguagem, iniciamos uma saga não só de programação, mas de idealização desse projeto que chamamos carinhosamente de *"nosso querido diário oficial"* e que chamou a atenção do Govlab em NY, 
-onde agora estamos fazendo um *coaching*.  
-
-## Participe de outras formas!
-
-Para nos ajudar nessa, precisamos saber mais sobre a 'experiência dos usuários' dos diários oficiais. Por isso, pedimos sua ajuda. Algumas perguntinhas rápidas estão abaixo. :) 
+Na tentativa de torná-lo aberto e reutilizável, não só no formato, mas na linguagem, iniciamos uma saga não só de programação, mas de idealização desse projeto que chamamos carinhosamente de *"nosso querido diário oficial"* e que chamou a atenção do Govlab em NY,  onde foi realizado um *coaching*, entre agosto e outubro de 2016.  
