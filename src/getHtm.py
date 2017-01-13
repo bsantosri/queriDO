@@ -31,10 +31,11 @@ def read_hostile_text(encoded_text):
     print('Could not decode', encoded_text)
     return None
 
+# First we will walk through all alvailable editions in a given range.
 for edi in range(1974,1770,-1):
-#for edi in [3173]:
 
     ediParam    = edi
+    # Keep a dictionary of folders and documents
     folders     = []
     materias    = []
 
@@ -44,15 +45,18 @@ for edi in range(1974,1770,-1):
     #respList    = open('3168_response.txt')
 
     for row in respList:
+        # Index of a folder
         if 'gFld(' in row:
             fldKey      = row[0:row.find(' = ')]
             fldVal      = read_hostile_text(row[row.find('gFld(')+5:row.find(');')] \
                           .split(', ')[0][1:-1])
             folders.append(dict(fldKey=fldKey, fldVal=fldVal))
+        # Index of a document
         elif 'addChild(' in row:
             materia     = row[row.find('([')+2:row.find('])')].split('", "')
             matId       = materia[1][materia[1].find('?id=')+4: \
                           materia[1].find('&edi')]
+            # TODO CAREFUL: we might have a hidden comma here, which will cause havoc on the conversion to CSV
             matTitulo   = read_hostile_text(materia[0][1:])
             matPaiKey   = row[0:row.find('.addChild')]
             materias.append(dict(matPathKey=[matPaiKey],
@@ -79,12 +83,12 @@ for edi in range(1974,1770,-1):
 
     matsOutput = materias
 
-    with open('htmLinks/' + str(ediParam) + '.csv', 'w') as csvfile:
+    with open('../htmLinks/' + str(ediParam) + '.csv', 'wb') as csvfile:
         fieldnames = ['matEdi','matId','matPathVal','matTitulo','matLink']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for matOut in matsOutput:
             del matOut['matPathKey']
             writer.writerow(matOut)
-            
+
     print ediParam
