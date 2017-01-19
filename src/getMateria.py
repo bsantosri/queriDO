@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
 # http response
 response    = requests.get(lnkParam.format(matParam, ediParam))
-rawtext = response.content.replace('\n', ' ').replace('\r', '')
+rawtext     = response.content.replace('\n', ' ').replace('\r', '')
 soup        = BeautifulSoup(rawtext, 'html5lib')
 
 # This becomes necessary because the raw html is too dirty (more than one head, for example)
