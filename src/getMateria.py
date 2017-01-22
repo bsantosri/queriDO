@@ -16,8 +16,8 @@ lnkParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
 def main(argv):
 
     # Default parameters
-    ediParam = 1772
-    matParam = 335
+    ediParam = 0
+    matParam = 0
 
     try:
         opts, args = getopt.getopt(argv, "he:d:", ["help", "edition=", "document="])
@@ -32,6 +32,10 @@ def main(argv):
             ediParam = arg
         elif opt in ("-d", "--document"):
             matParam = arg
+    if not opts:
+        usage()
+        sys.exit(2)
+
     return ediParam, matParam
 
 
@@ -39,24 +43,30 @@ def usage():
     print("usage: getMateria [--help] [--edition=<value>] [--document=<value>]")
 
 
+def extract(materia, edicao):
+
+    # http response
+    response    = requests.get(lnkParam.format(materia, edicao))
+    rawtext     = response.content.replace('\n', ' ').replace('\r', '')
+    soup        = BeautifulSoup(rawtext, 'html5lib')
+
+    # This becomes necessary because the raw html is too dirty (more than one head, for example)
+    # and ends up confusing the parser.
+    soup.head.extract()
+    if soup.style is None:
+        print(soup.get_text())
+        sys.exit()
+    else:
+        soup.style.extract()
+        soup.style.extract()
+
+    # This contains the text of the document separated by sentences.
+    # Bear in mind that due to ugly and automated formatting when the text was originally generated
+    # there might be odd splits, like one word showing up as two separate strings. This will need to
+    # be taken care of when structuring the data.
+    return [text for text in soup.stripped_strings]
+
 if __name__ == "__main__":
     ediParam, matParam = main(sys.argv[1:])
-
-# http response
-response    = requests.get(lnkParam.format(matParam, ediParam))
-rawtext     = response.content.replace('\n', ' ').replace('\r', '')
-soup        = BeautifulSoup(rawtext, 'html5lib')
-
-# This becomes necessary because the raw html is too dirty (more than one head, for example)
-# and ends up confusing the parser.
-soup.head.extract()
-soup.style.extract()
-soup.style.extract()
-
-# This contains the text of the document separated by sentences.
-# Bear in mind that due to ugly and automated formatting when the text was originally generated
-# there might be odd splits, like one word showing up as two separate strings. This will need to
-# be taken care of when structuring the data.
-content = [text for text in soup.stripped_strings]
-
-print(soup.get_text().encode('utf-8'))
+    for text in extract(matParam, ediParam):
+        print(text.encode('utf-8'))
