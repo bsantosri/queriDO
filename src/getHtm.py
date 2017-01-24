@@ -7,12 +7,39 @@
 import requests
 import csv
 import io
+import sys, getopt
 
 # variables
 htmParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
               'load_tree.php?edi_id={0}'
 lnkParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
               'mostrar.htm?id={0}&edi_id={1}'
+
+def main(argv):
+
+    # Default parameters
+    ediParam = 0
+
+    try:
+        opts, args = getopt.getopt(argv, "he:", ["help", "edition="])
+    except getopt.GetoptError:
+        usage()
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            usage()
+            sys.exit()
+        elif opt in ("-e", "--edition"):
+            ediParam = arg
+    if not opts:
+        usage()
+        sys.exit(2)
+        
+    return ediParam
+
+
+def usage():
+    print("usage: getHtm [--help] [--edition=<value>]")
 
 # Decode an input and return utf-8 #
 def read_hostile_text(encoded_text):
@@ -31,10 +58,8 @@ def read_hostile_text(encoded_text):
     print('Could not decode', encoded_text)
     return None
 
-# First we will walk through all alvailable editions in a given range.
-for edi in range(1974,1770,-1):
+def getedition(ediParam):
 
-    ediParam    = edi
     # Keep a dictionary of folders and documents
     folders     = []
     materias    = []
@@ -81,14 +106,18 @@ for edi in range(1974,1770,-1):
                     if n < len(materia['matPathKey']) - 1:
                         materia['matPathVal'] += ' | '
 
-    matsOutput = materias
-
     with open('../htmLinks/' + str(ediParam) + '.csv', 'wb') as csvfile:
         fieldnames = ['matEdi','matId','matPathVal','matTitulo','matLink']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        for matOut in matsOutput:
-            del matOut['matPathKey']
-            writer.writerow(matOut)
+        for materia in materias:
+            del materia['matPathKey']
+            writer.writerow(materia)
 
-    print ediParam
+    print('Processado edicao:', ediParam)
+    return materias
+
+if __name__ == "__main__":
+    ediParam = main(sys.argv[1:])
+    for materia in getedition(ediParam):
+        print(materia['matEdi'], materia['matId'], materia['matPathVal'], materia['matTitulo'], materia['matLink'])
