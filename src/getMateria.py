@@ -52,7 +52,8 @@ def soupify(edicao, materia):
     return soup
 
 # TODO get the tokens. Right now just outputting a list of strings.
-def extract_tokens(soup):
+def extract_tokens(ediParam, matParam):
+    soup = soupify(ediParam, matParam)
     # This becomes necessary because the raw html is too dirty (more than one head, for example)
     # and ends up confusing the parser.
     soup.head.extract()
@@ -74,12 +75,8 @@ def pretty_print(soup):
 
 def extract_html(ediParam, matParam):
     soup = soupify(ediParam, matParam)
-    print('Outputting html to', '../html/' + str(ediParam) + '-' + str(matParam) + '.html')
-    f = open('../html/' + str(ediParam) + '-' + str(matParam) + '.html', 'w')
-    htmlfile = pretty_print(soup)
-    for line in htmlfile:
-        f.write(line.encode('utf-8'))
-    f.close()
+    return pretty_print(soup)
+
 
 if __name__ == "__main__":
     ediParam, matParam = main(sys.argv[1:])
