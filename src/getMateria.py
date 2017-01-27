@@ -43,13 +43,17 @@ def usage():
     print("usage: getMateria [--help] [--edition=<value>] [--document=<value>]")
 
 
-def extract(materia, edicao):
+def soupify(edicao, materia):
 
     # http response
     response    = requests.get(lnkParam.format(materia, edicao))
     rawtext     = response.content.replace('\n', ' ').replace('\r', '')
     soup        = BeautifulSoup(rawtext, 'html5lib')
+    return soup
 
+# TODO get the tokens. Right now just outputting a list of strings.
+def extract_tokens(ediParam, matParam):
+    soup = soupify(ediParam, matParam)
     # This becomes necessary because the raw html is too dirty (more than one head, for example)
     # and ends up confusing the parser.
     soup.head.extract()
@@ -66,7 +70,14 @@ def extract(materia, edicao):
     # be taken care of when structuring the data.
     return [text for text in soup.stripped_strings]
 
+def pretty_print(soup):
+    return soup.prettify()
+
+def extract_html(ediParam, matParam):
+    soup = soupify(ediParam, matParam)
+    return pretty_print(soup)
+
+
 if __name__ == "__main__":
     ediParam, matParam = main(sys.argv[1:])
-    for text in extract(matParam, ediParam):
-        print(text.encode('utf-8'))
+    extract_html(ediParam, matParam)
