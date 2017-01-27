@@ -10,7 +10,7 @@ import sys, getopt
 
 # variables
 lnkParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
-              'mostrar.htm?id={0}&edi_id={1}'
+              'mostrar.htm?id={1}&edi_id={0}'
 
 
 def main(argv):
@@ -43,17 +43,22 @@ def usage():
     print("usage: getMateria [--help] [--edition=<value>] [--document=<value>]")
 
 
-def soupify(edicao, materia):
+def soupify(link):
 
     # http response
-    response    = requests.get(lnkParam.format(materia, edicao))
+    response    = requests.get(link)
     rawtext     = response.content.replace('\n', ' ').replace('\r', '')
     soup        = BeautifulSoup(rawtext, 'html5lib')
     return soup
 
+
+def pretty_print(soup):
+    return soup.prettify()
+
+
 # TODO get the tokens. Right now just outputting a list of strings.
-def extract_tokens(ediParam, matParam):
-    soup = soupify(ediParam, matParam)
+def extract_tokens(materia):
+    soup = soupify(materia['matLink'])
     # This becomes necessary because the raw html is too dirty (more than one head, for example)
     # and ends up confusing the parser.
     soup.head.extract()
@@ -68,16 +73,23 @@ def extract_tokens(ediParam, matParam):
     # Bear in mind that due to ugly and automated formatting when the text was originally generated
     # there might be odd splits, like one word showing up as two separate strings. This will need to
     # be taken care of when structuring the data.
-    return [text for text in soup.stripped_strings]
+    enriched_output = [materia['matPathVal'].decode('utf-8'), materia['matTitulo'].decode('utf-8')]
+    document = [text for text in soup.stripped_strings]
+    # First and last strings are "Imprimir". The penultimate line is also not needed.
+    del document[0]
+    del document[-1]
+    del document[-1]
+    del document[-1]
+    enriched_output.extend(document)
+    return enriched_output
 
-def pretty_print(soup):
-    return soup.prettify()
 
-def extract_html(ediParam, matParam):
-    soup = soupify(ediParam, matParam)
+def extract_html(materia):
+    soup = soupify(materia['matLink'])
     return pretty_print(soup)
 
 
 if __name__ == "__main__":
     ediParam, matParam = main(sys.argv[1:])
-    extract_html(ediParam, matParam)
+    link = linkParam.format(ediParam, matParam)
+    extract_html(link)
