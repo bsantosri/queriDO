@@ -34,7 +34,7 @@ def main(argv):
     if not opts:
         usage()
         sys.exit(2)
-        
+
     return ediParam
 
 
@@ -106,7 +106,10 @@ def getedition(ediParam):
                     if n < len(materia['matPathKey']) - 1:
                         materia['matPathVal'] += ' | '
 
-    with open('../htmLinks/' + str(ediParam) + '.csv', 'wb') as csvfile:
+# TODO I am not happy with this. We shouldn't be hardcoding the location of the output CSVs
+# Actually, we shouldn't even be outputting them to files here. We should instead output the
+# list of materias, and defer the job of writing the files to a caller.
+    with open('../../htmLinks/' + str(ediParam) + '.csv', 'wb') as csvfile:
         fieldnames = ['matEdi','matId','matPathVal','matTitulo','matLink']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
