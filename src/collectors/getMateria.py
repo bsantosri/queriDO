@@ -78,13 +78,15 @@ def extract_tokens(materia):
     # Bear in mind that due to ugly and automated formatting when the text was originally generated
     # there might be odd splits, like one word showing up as two separate strings. This will need to
     # be taken care of when structuring the data.
-    enriched_output = [materia['matPathVal'].decode('utf-8'), materia['matTitulo'].decode('utf-8')]
+    enriched_output = [materia['matPathVal'], materia['matTitulo']]
     document = [text for text in soup.stripped_strings]
     # First and last strings are "Imprimir". The penultimate line is also not needed.
     del document[0]
     del document[-1]
     del document[-1]
     del document[-1]
+    for token in document:
+        token = token.encode('utf-8')
     enriched_output.extend(document)
     return enriched_output
 

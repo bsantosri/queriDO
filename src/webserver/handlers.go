@@ -55,6 +55,9 @@ func GetDocument(w http.ResponseWriter, r *http.Request) {
 	matParam := vars["matParam"]
 	w.WriteHeader(http.StatusOK)
 
+	if len(configuration.COLLECTORS_PATH) == 0 {
+		log.Fatal("error: varible COLLECTORS_PATH not set")
+	}
 	python_path := configuration.COLLECTORS_PATH[0]
 	script := python_path + "getMateria.py"
 	arg1 := fmt.Sprintf("--edition=%v", ediParam)
@@ -63,8 +66,10 @@ func GetDocument(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	output := fmt.Sprintf("%q\n", out)
 	materias := Materias{
-		Materia{Edition: ediParam, Document: matParam, Text: string(out)},
+		Materia{Edition: ediParam, Document: matParam, Text: output},
 	}
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
