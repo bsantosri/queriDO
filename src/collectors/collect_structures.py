@@ -11,5 +11,5 @@ for materia in materias:
     # TODO we should be outputting to a place given as a parameter, not hardcoded.
     f = open('../../tokens/' + str(ediParam) + '-' + str(matParam) + '.txt', 'wb')
     for item in tokens:
-        f.write(item.encode('utf-8') + '\r\n')
+        f.write(item.encode('utf-8') + '\n')
     f.close()
