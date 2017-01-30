@@ -6,7 +6,7 @@ ediParam = 1772
 materias = getHtm.getedition(ediParam)
 for materia in materias:
     matParam = materia['matId']
-    htmlfile = getMateria.extract_html(ediParam, matParam)
+    htmlfile = getMateria.extract_html(materia)
     print('Outputting html to', '../html/' + str(ediParam) + '-' + str(matParam) + '.html')
     f = open('../html/' + str(ediParam) + '-' + str(matParam) + '.html', 'w')
     for line in htmlfile:
