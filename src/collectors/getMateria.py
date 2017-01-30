@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 import pkg_resources
 import unicodedata
 import sys, getopt
+import getHtm
+import json
 
 # variables
 lnkParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
@@ -18,9 +20,10 @@ def main(argv):
     # Default parameters
     ediParam = 0
     matParam = 0
+    output = False
 
     try:
-        opts, args = getopt.getopt(argv, "he:d:", ["help", "edition=", "document="])
+        opts, args = getopt.getopt(argv, "he:d:s", ["help", "edition=", "document=", "store"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -32,15 +35,17 @@ def main(argv):
             ediParam = arg
         elif opt in ("-d", "--document"):
             matParam = arg
+        elif opt in ("-s", "--store"):
+            output = True
     if not opts:
         usage()
         sys.exit(2)
 
-    return ediParam, matParam
+    return ediParam, matParam, output
 
 
 def usage():
-    print("usage: getMateria [--help] [--edition=<value>] [--document=<value>]")
+    print("usage: getMateria [--help] [--edition=<value>] [--document=<value>] [--store]")
 
 
 def soupify(link):
@@ -84,12 +89,19 @@ def extract_tokens(materia):
     return enriched_output
 
 
-def extract_html(materia):
-    soup = soupify(materia['matLink'])
+def extract_html(link):
+    soup = soupify(link)
     return pretty_print(soup)
 
 
 if __name__ == "__main__":
-    ediParam, matParam = main(sys.argv[1:])
-    link = linkParam.format(ediParam, matParam)
-    extract_html(link)
+    ediParam, matParam, store = main(sys.argv[1:])
+
+    if not store:
+        materias = getHtm.getedition(ediParam, False)
+        for materia in materias:
+            if matParam == materia['matId']:
+                print(extract_tokens(materia))
+                break
+    else:
+        extract_html(lnkParam.format(ediParam, matParam))

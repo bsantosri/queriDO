@@ -3,10 +3,10 @@ import getHtm
 
 # Test script. This should get all docs from edition 1772.
 ediParam = 1772
-materias = getHtm.getedition(ediParam)
+materias = getHtm.getedition(ediParam, False)
 for materia in materias:
     matParam = materia['matId']
-    htmlfile = getMateria.extract_html(materia)
+    htmlfile = getMateria.extract_html(materia['matLink'])
     print('Outputting html to', '../../html/' + str(ediParam) + '-' + str(matParam) + '.html')
     # TODO we should be outputting to a place given as a parameter, not hardcoded.
     f = open('../../html/' + str(ediParam) + '-' + str(matParam) + '.html', 'w')

@@ -30,4 +30,10 @@ var routes = Routes{
 		"/todos/{todoId}",
 		TodoShow,
 	},
+	Route{
+		"GetDoc",
+		"GET",
+		"/getdoc&edi={ediParam}&doc={matParam}",
+		GetDocument,
+	},
 }

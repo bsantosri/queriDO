@@ -2,8 +2,8 @@ import getMateria
 import getHtm
 
 # Test script. This should get all docs from edition 1772.
-ediParam = 3335
-materias = getHtm.getedition(ediParam)
+ediParam = 1772
+materias = getHtm.getedition(ediParam, False)
 for materia in materias:
     matParam = materia['matId']
     tokens = getMateria.extract_tokens(materia)

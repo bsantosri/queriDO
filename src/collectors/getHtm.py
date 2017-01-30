@@ -19,9 +19,10 @@ def main(argv):
 
     # Default parameters
     ediParam = 0
+    output = False
 
     try:
-        opts, args = getopt.getopt(argv, "he:", ["help", "edition="])
+        opts, args = getopt.getopt(argv, "he:o", ["help", "edition=", "output"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -31,11 +32,13 @@ def main(argv):
             sys.exit()
         elif opt in ("-e", "--edition"):
             ediParam = arg
+        elif opt in ("-o", "--output"):
+            output = True
     if not opts:
         usage()
         sys.exit(2)
 
-    return ediParam
+    return ediParam, output
 
 
 def usage():
@@ -58,7 +61,7 @@ def read_hostile_text(encoded_text):
     print('Could not decode', encoded_text)
     return None
 
-def getedition(ediParam):
+def getedition(ediParam, store):
 
     # Keep a dictionary of folders and documents
     folders     = []
@@ -106,21 +109,22 @@ def getedition(ediParam):
                     if n < len(materia['matPathKey']) - 1:
                         materia['matPathVal'] += ' | '
 
-# TODO I am not happy with this. We shouldn't be hardcoding the location of the output CSVs
-# Actually, we shouldn't even be outputting them to files here. We should instead output the
-# list of materias, and defer the job of writing the files to a caller.
-    with open('../../htmLinks/' + str(ediParam) + '.csv', 'wb') as csvfile:
-        fieldnames = ['matEdi','matId','matPathVal','matTitulo','matLink']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-        for materia in materias:
-            del materia['matPathKey']
-            writer.writerow(materia)
+    # TODO I am not happy with this. We shouldn't be hardcoding the location of the output CSVs
+    # Actually, we shouldn't even be outputting them to files here. We should instead output the
+    # list of materias, and defer the job of writing the files to a caller.
+    if store:
+        with open('../../htmLinks/' + str(ediParam) + '.csv', 'wb') as csvfile:
+            fieldnames = ['matEdi','matId','matPathVal','matTitulo','matLink']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for materia in materias:
+                del materia['matPathKey']
+                writer.writerow(materia)
 
     print('Processado edicao:', ediParam)
     return materias
 
 if __name__ == "__main__":
-    ediParam = main(sys.argv[1:])
-    for materia in getedition(ediParam):
+    ediParam, output = main(sys.argv[1:])
+    for materia in getedition(ediParam, output):
         print(materia['matEdi'], materia['matId'], materia['matPathVal'], materia['matTitulo'], materia['matLink'])
