@@ -60,6 +60,22 @@ def soupify(link):
 def pretty_print(soup):
     return soup.prettify()
 
+def extract_json(materia):
+    soup = soupify(materia['matLink'])
+    # This becomes necessary because the raw html is too dirty (more than one head, for example)
+    # and ends up confusing the parser.
+    soup.head.extract()
+    if soup.style is None:
+        print(soup.get_text())
+        sys.exit()
+    else:
+        soup.style.extract()
+        soup.style.extract()
+
+    enriched_output = [materia['matPathVal'], materia['matTitulo']]
+    document = soup.get_text()
+    output = materia['matPathVal'] + " " + materia['matTitulo'] + " " + document.encode('utf-8')
+    return output
 
 # TODO get the tokens. Right now just outputting a list of strings.
 def extract_tokens(materia):
@@ -78,18 +94,24 @@ def extract_tokens(materia):
     # Bear in mind that due to ugly and automated formatting when the text was originally generated
     # there might be odd splits, like one word showing up as two separate strings. This will need to
     # be taken care of when structuring the data.
-    enriched_output = [materia['matPathVal'], materia['matTitulo']]
-    document = [text for text in soup.stripped_strings]
+    document = soup.get_text().replace(u'\u00A0', ' ')
+    document = document.replace(u'\u000A', '')
+    document = document.replace(u'\u0009', '')
+    encoded_document = document.encode('utf-8')
     # First and last strings are "Imprimir". The penultimate line is also not needed.
-    del document[0]
-    del document[-1]
-    del document[-1]
-    del document[-1]
-    for token in document:
-        token = token.encode('utf-8')
-    enriched_output.extend(document)
-    return enriched_output
-
+    #del document[0]
+    #del document[-1]
+    #del document[-1]
+    #del document[-1]
+    #converted_docs = []
+    #for token in document:
+    #    converted_docs.append(token.encode('utf-8'))
+    #enriched_output.extend(document)
+    #return enriched_output
+    matPathVal = materia['matPathVal']
+    matTitulo = materia['matTitulo']
+    output = matPathVal + " " + matTitulo + " " + encoded_document
+    return output
 
 def extract_html(link):
     soup = soupify(link)

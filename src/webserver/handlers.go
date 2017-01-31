@@ -42,6 +42,7 @@ func GetDocument(w http.ResponseWriter, r *http.Request) {
 		COLLECTORS_PATH []string
 	}
 
+	// TODO reading of config should happen on instatiation of webserver
 	file, _ := os.Open("config.json")
 	decoder := json.NewDecoder(file)
 	configuration := Configuration{}
@@ -53,7 +54,6 @@ func GetDocument(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	ediParam := vars["ediParam"]
 	matParam := vars["matParam"]
-	w.WriteHeader(http.StatusOK)
 
 	if len(configuration.COLLECTORS_PATH) == 0 {
 		log.Fatal("error: varible COLLECTORS_PATH not set")
@@ -64,10 +64,10 @@ func GetDocument(w http.ResponseWriter, r *http.Request) {
 	arg2 := fmt.Sprintf("--document=%v", matParam)
 	out, err := exec.Command("python", script, arg1, arg2).Output()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err, "Error running script:", script)
 	}
 
-	output := fmt.Sprintf("%q\n", out)
+	output := fmt.Sprintf("%q", out)
 	materias := Materias{
 		Materia{Edition: ediParam, Document: matParam, Text: output},
 	}
