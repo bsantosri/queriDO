@@ -19,10 +19,10 @@ def main(argv):
 
     # Default parameters
     ediParam = 0
-    output = False
+    store = False
 
     try:
-        opts, args = getopt.getopt(argv, "he:o", ["help", "edition=", "output"])
+        opts, args = getopt.getopt(argv, "he:s", ["help", "edition=", "store"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -32,8 +32,8 @@ def main(argv):
             sys.exit()
         elif opt in ("-e", "--edition"):
             ediParam = arg
-        elif opt in ("-o", "--output"):
-            output = True
+        elif opt in ("-o", "--store"):
+            store = True
     if not opts:
         usage()
         sys.exit(2)
@@ -120,11 +120,9 @@ def getedition(ediParam, store):
             for materia in materias:
                 del materia['matPathKey']
                 writer.writerow(materia)
-
-    print('Processado edicao:', ediParam)
     return materias
 
 if __name__ == "__main__":
-    ediParam, output = main(sys.argv[1:])
-    for materia in getedition(ediParam, output):
+    ediParam, store = main(sys.argv[1:])
+    for materia in getedition(ediParam, store):
         print(materia['matEdi'], materia['matId'], materia['matPathVal'], materia['matTitulo'], materia['matLink'])
