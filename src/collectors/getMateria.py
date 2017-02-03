@@ -137,6 +137,10 @@ def extract_html(materia):
     soup = soupify(materia['matLink'])
     return pretty_print(soup).encode('utf-8')
 
+def extract_html_from_link(link):
+    soup = soupify(link)
+    return pretty_print(soup).encode('utf-8')
+
 
 if __name__ == "__main__":
     ediParam, matParam, store, path, output = main(sys.argv[1:])
