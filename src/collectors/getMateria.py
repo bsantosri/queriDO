@@ -21,9 +21,11 @@ def main(argv):
     ediParam = 0
     matParam = 0
     output = False
+    path = ''
+    output_format = ''
 
     try:
-        opts, args = getopt.getopt(argv, "he:d:s", ["help", "edition=", "document=", "store"])
+        opts, args = getopt.getopt(argv, "he:d:s:o:", ["help", "edition=", "document=", "store=", "output="])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -37,25 +39,43 @@ def main(argv):
             matParam = arg
         elif opt in ("-s", "--store"):
             output = True
+            if arg[-1] is not '/':
+                path = arg + '/'
+            else:
+                path = arg
+        elif opt in ("-o", "--output"):
+            output_format = arg
+            if output_format not in ["html", "HTML", "json", "JSON"]:
+                print("Invalid output format!")
+                usage()
+                sys.exit()
     if not opts:
         usage()
         sys.exit(2)
 
-    return ediParam, matParam, output
+    if ediParam == 0 or matParam == 0 or output_format == '':
+        print("edition, document and output are mandatory parameters.")
+        usage()
+        sys.exit(2)
+
+    return ediParam, matParam, output, path, output_format.lower()
 
 
 def usage():
-    print("usage: getMateria [--help] [--edition=<value>] [--document=<value>] [--store]")
+    print("usage: getMateria [--help] [--edition=<value>] [--document=<value>] [--store=<path>] [--output=<html/json>]")
+    print("--help: prints this usage guide and exits")
+    print("--edition=<value>: pass in the edition number to extract")
+    print("--document=<value>: pass in the document ID to extract.")
+    print("--store=<path>: optional parameter to pass in the path where document is to be extracted to.")
+    print("--output=<html/json>: required output, HTML or structured JSON.")
 
 
 def soupify(link):
-
     # http response
     response    = requests.get(link)
     rawtext     = response.content.replace('\n', ' ').replace('\r', '')
     soup        = BeautifulSoup(rawtext, 'html5lib')
     return soup
-
 
 def pretty_print(soup):
     return soup.prettify()
@@ -113,19 +133,37 @@ def extract_tokens(materia):
     output = matPathVal + " " + matTitulo + " " + encoded_document
     return output
 
-def extract_html(link):
-    soup = soupify(link)
-    return pretty_print(soup)
+def extract_html(materia):
+    soup = soupify(materia['matLink'])
+    return pretty_print(soup).encode('utf-8')
 
 
 if __name__ == "__main__":
-    ediParam, matParam, store = main(sys.argv[1:])
+    ediParam, matParam, store, path, output = main(sys.argv[1:])
 
-    if not store:
-        materias = getHtm.getedition(ediParam, False)
-        for materia in materias:
-            if matParam == materia['matId']:
-                print(extract_tokens(materia))
+    materias = getHtm.getedition(ediParam, False)
+    for materia in materias:
+        if matParam == materia['matId']:
+            if output == 'json':
+                jsonfile = extract_tokens(materia)
+                if not store:
+                    print(jsonfile)
+                else:
+                    print('Outputting json to', path, str(ediParam) + '-' + str(matParam) + '.json')
+                    f = open(path + str(ediParam) + '-' + str(matParam) + '.json', 'w')
+                    for line in jsonfile:
+                        f.write(line)
+                    f.close()
                 break
-    else:
-        extract_html(lnkParam.format(ediParam, matParam))
+                break
+            elif output == 'html':
+                htmlfile = extract_html(materia)
+                if not store:
+                    print(htmlfile)
+                else:
+                    print('Outputting html to', path, str(ediParam) + '-' + str(matParam) + '.html')
+                    f = open(path + str(ediParam) + '-' + str(matParam) + '.html', 'w')
+                    for line in htmlfile:
+                        f.write(line)
+                    f.close()
+                break
