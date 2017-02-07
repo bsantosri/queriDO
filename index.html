@@ -67,10 +67,14 @@
 	  } ); //ONLOAD
 
 
-  function pegaMateria(x){
-	var url = 'https://okfn-brasil.github.io/queriDO/html/'+x+".htm"; // online
+  function pegaMateria(x){	  
+	var url = 'https://okfn-brasil.github.io/queriDO/'; // online
 	if (window.location.hostname.indexOf("github.io") == -1)
-		url = './html/'+x+".htm";  // localhost
+		url = './';  // localhost
+	var folder = $('#sfolder option:selected').val();
+	if (folder!='html')
+		folder = 'newhtml';
+	url = url + folder + '/'+ x +'.htm';
 	$('#materia').load(url);
   }
   function pegaMateriaObj(obj){
@@ -85,7 +89,12 @@
 <body>
 <div class="ui-widget">
   Diário Oficial do Rio, ver <label for="tags">Matéria nº  </label>
-  <input id="tags"> <button id="nada">ok</button>
+  <input id="tags"> 
+  <select id="sfolder" name="sfolder">
+	  <option value="html">Filtrado</option>
+	  <option value="newhtml">Original</option>
+  </select>	
+  <button id="nada">ok</button>
  ou <a href="#" onclick="$('#materia').html( $('#lista').html() ); return false;">listar todas</a>.
  &#160;&#160;&#160;&#160;&#160; <a href="https://github.com/okfn-brasil/queriDO">[git do projeto]</a>
 </div>
