@@ -68,7 +68,9 @@
 
 
   function pegaMateria(x){
-	var url = './html/'+x+".htm";
+	var url = 'https://okfn-brasil.github.io/queriDO/html/'+x+".htm"; // online
+	if (window.location.hostname.indexOf("github.io") == -1)
+		url = './html/'+x+".htm";  // localhost
 	$('#materia').load(url);
   }
   function pegaMateriaObj(obj){
