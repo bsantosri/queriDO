@@ -51,6 +51,8 @@
 
 	    $('#materia').html( $('#lista').html() );
 
+	    $('#sok').click(function(){ pegaMateria( $('#tags').val() ) });
+
 	    $( "#tags" ).autocomplete({
 		//source: availableTags,
 		source: function( request, response ) {
@@ -94,7 +96,7 @@
 	  <option value="html">Filtrado</option>
 	  <option value="newhtml">Original</option>
   </select>	
-  <button id="nada">ok</button>
+  <button id="sok">ok</button>
  ou <a href="#" onclick="$('#materia').html( $('#lista').html() ); return false;">listar todas</a>.
  &#160;&#160;&#160;&#160;&#160; <a href="https://github.com/okfn-brasil/queriDO">[git do projeto]</a>
 </div>
