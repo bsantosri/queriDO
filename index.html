@@ -74,8 +74,7 @@
 	if (window.location.hostname.indexOf("github.io") == -1)
 		url = './';  // localhost
 	var folder = $('#sfolder option:selected').val();
-	if (folder!='html')
-		folder = 'newhtml';
+	// old secure... if (folder!='html') folder = 'newhtml';
 	url = url + folder + '/'+ x +'.html';
 	$('#materia').load(url);
   }
@@ -95,6 +94,7 @@
   <select id="sfolder" name="sfolder">
 	  <option value="html">Filtrado</option>
 	  <option value="newhtml">Original</option>
+	  <option value="html_mark">Marcado</option>
   </select>	
   <button id="sok">ok</button>
  ou <a href="#" onclick="$('#materia').html( $('#lista').html() ); return false;">listar todas</a>.

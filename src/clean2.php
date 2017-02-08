@@ -1,6 +1,6 @@
 <?php
 /**
- * Extrae template do DOM-Rio, específico dele.
+ * Extrai template do Diario Oficial do municipio do Rio, específico dele.
  */
 
 ini_set("default_charset", 'utf-8');
@@ -38,7 +38,7 @@ function x2dom($xml) {
 }
 
 function XMLpretty($xml) {
-	$dom = x2dom($xml);
+	$dom = x2dom($xml); // DOMDocument
 	if (!$dom) die("\nOPS, confira ERRO DOM.\n");
 	$dom->preserveWhiteSpace = false;
 	$dom->resolveExternals = false; // external entities from a (HTML) doctype declaration
