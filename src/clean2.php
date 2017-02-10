@@ -6,13 +6,14 @@
 ini_set("default_charset", 'utf-8');
 
 $basedir = dirname(__DIR__);  //  clone root
-$dirTree = 'htmLinks'; 		// csv
-$originais = 'newhtml'; 	// html original com UTF8 homologado
+$dirTree = 'data/do-info'; 		// csv
+$originais = 'content/original'; 	// html original com UTF8 homologado
+$filtrados = 'content/filtrado';
 
 foreach (scandir("$basedir/$originais") as $f) if (substr($f,-5,5)=='.html') {
 	echo "\n- $f";
 	$htm2 = superClen("$basedir/$originais/$f",true);
-	file_put_contents("$basedir/html_clean/$f",$htm2);
+	file_put_contents("$basedir/$filtrados/$f",$htm2);
 }
 
 // // // // // // // // //

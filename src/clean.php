@@ -6,7 +6,7 @@ use \ForceUTF8\Encoding; // https://github.com/neitanod/forceutf8
 
 ini_set("default_charset", 'utf-8');
 
-$dir = 'html';
+$dir = 'content/filtrado';
 
 foreach (scandir($dir) as $f) if (substr($f,-5,5)=='.html') {
 	echo "\n- $f";

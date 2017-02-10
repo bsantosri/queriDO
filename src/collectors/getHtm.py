@@ -113,7 +113,7 @@ def getedition(ediParam, store):
     # Actually, we shouldn't even be outputting them to files here. We should instead output the
     # list of materias, and defer the job of writing the files to a caller.
     if store:
-        with open('../../htmLinks/' + str(ediParam) + '.csv', 'wb') as csvfile:
+        with open('../../data/do-info/' + str(ediParam) + '.csv', 'wb') as csvfile:
             fieldnames = ['matEdi','matId','matPathVal','matTitulo','matLink']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
