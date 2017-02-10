@@ -6,14 +6,16 @@
 ini_set("default_charset", 'utf-8');
 
 $basedir = dirname(__DIR__);  //  clone root
-$dirTree = 'data/do-info'; 		// csv
-$originais = 'content/original'; 	// html original com UTF8 homologado
-$filtrados = 'content/filtrado'; 	// html limpo
 
-foreach (scandir("$basedir/$originais") as $f) if (substr($f,-5,5)=='.html') {
+// $dirTree = 'data/do-info'; 		// csv
+// $originais = 'content/original'; 	// html original com UTF8 homologado
+$filtrados = 'content/filtrado'; 	// html limpo
+$marcados = 'content/marcado'; 	// destino!
+
+foreach (scandir("$basedir/$filtrados") as $f) if (substr($f,-5,5)=='.html') {
 	echo "\n- $f";
-	$htm2 = mark("$basedir/$originais/$f",true);
-	file_put_contents("$basedir/$filtrados/$f",$htm2);
+	$htm2 = mark("$basedir/$filtrados/$f",true);
+	file_put_contents("$basedir/$marcados/$f",$htm2);
 }
 
 // // // // // // // // //
