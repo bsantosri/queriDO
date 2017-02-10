@@ -1,25 +1,20 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-
-
+  <meta charset="utf-8"/>
   <title>DOM-RJ, matérias</title>
 
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<style>
-		.organization_name {background-color: red;}
-	</style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+  <style type="text/css">
+	.organization_name {background-color: red;}
+  </style>
 
-  <script>
-	    var aLista = ''; // make global
+  <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" type="text/javascript"></script>
+  <script type="text/javascript">
+	var aLista = ''; // make global
 
-
-
-
-  $( function() {  // ONLOAD
+	$( function() {  // ONLOAD
 
 	    var materias = [
 		100150, 100157, 101255, 10200, 102207, 102637, 103008, 103431, 105866, 106315, 108714, 108959, 109220, 110242, 
@@ -66,11 +61,8 @@
 	    $('#materia').html( aLista );
 
 	    var availableTags = materias.map(function(item) {
-		    return String(item);
-	     });
-
-	   // $('#sok').click( pega_enterTag() );
-	    //$('#sfolder').change( pega_enterTag() );
+		    return String(item).padStart(6,'\xa0');  // nbsp
+	    });
 
 	    $( "#enterTag" ).autocomplete({
 		//source: availableTags,
@@ -90,11 +82,10 @@
 
   function pegaMateria(x){	  
         if (!x) return;
-	var url = 'https://okfn-brasil.github.io/queriDO/'; // online
+	var url = 'https://okfn-brasil.github.io/queriDO/content'; // online
 	if (window.location.hostname.indexOf("github.io") == -1)
-		url = './';  // localhost
+		url = './content';  // localhost
 	var folder = $('#sfolder option:selected').val();
-	// old secure... if (folder!='html') folder = 'newhtml';
 	url = url + folder + '/'+ x +'.html';
 	$('#materia').load(url);
   }
@@ -108,21 +99,24 @@
 </script>
 
 </head>
+
 <body>
 <div class="ui-widget">
   Diário Oficial do Rio, ver <label for="enterTag">Matéria nº  </label>
-  <input id="enterTag"> 
+  <input id="enterTag">
   <select id="sfolder" name="sfolder" onchange="pega_enterTag()">
-	  <option value="newhtml">Original</option>
-	  <option value="html">Filtrado</option>
-	  <option value="html_mark">Marcado</option>
+	  <option value="original">Original</option>
+	  <option value="filtrado">Filtrado</option>
+	  <option value="marcado">Marcado</option>
+	  <!-- option value="rascunho">Rascunho</option -->
   </select>	
   <button id="sok" onclick="pega_enterTag()">ok</button>
  ou <a href="#" onclick="$('#materia').html( aLista ); return false;">listar todas</a>.
- &#160;&#160;&#160;&#160;&#160; <a href="https://github.com/okfn-brasil/queriDO">[git do projeto]</a>
+ &#160;&#160;&#160;&#160;&#160; <a href="https://github.com/okfn-brasil/queriDO">[<tt>git</tt> do projeto]</a>
 </div>
 
 <hr/>
  <div style="background-color:#DDD; padding:3em" id="materia"></div>
 </body>
+
 </html>
