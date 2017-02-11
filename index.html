@@ -89,7 +89,7 @@
 	if (window.location.hostname.indexOf("github.io") == -1)
 		url = './content';  // localhost
 	var folder = $('#sfolder option:selected').val();
-	url = url + folder + '/'+ x +'.html';
+	url = url +'/'+ folder +'/'+ x +'.html';
 	$('#materia').load(url);
   }
   function pegaMateriaObj(obj){
