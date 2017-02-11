@@ -1,39 +1,49 @@
-`queriDO` ou  **"nosso Querido Diario Oficial"**... Por uma versão *machine-readable* do Diário Oficial do Município do Rio de Janeiro.
-[Clique aqui para testar!](https://okfn-brasil.github.io/queriDO/).
+`queriDO` ou  **"nosso Querido Diario Oficial"**... Por uma versão *machine-readable* dos Diários Oficiais do Brasil. Municipais, estaduais e da união.
 
-## Equipe
+A **comunudade mantenedora deste projeto** é formada por fois grupos:
 
-O projeto ainda "gratis" e inscipiente. Precisamos de voluntários.
+* **curadorias**: definem os "alvos", estabelcem para quais assuntos e diários oficiais desejam voltar seus olhares, fazer suas explorações, e mais tarde entregar seus relatórios e pareceres.
 
-Estamos aguardando a sua participação!  Participe para sentir a "mão-na-massa", dar sua opinião... E se gostar, escolha suas metas-pé-no-chão... E continue participando: mesmo que pouco, é importante preservar a frequência mínima de participação, de todos os envolvidos numa meta: sempre aparece mais um para ajudar, se ver os envolvidos por perto, acolhendo e tomando conta.
+* **experts**: programadores, linguístas, ou simples entusiastas do [data scraping](https://en.wikipedia.org/wiki/Data_scraping), colaborador, interessados em ajudar a curadoria a achar a "agulha no palheiro", e preparar milhares de separatas de diários oficiais para constituir um [corpus textual](https://en.wikipedia.org/wiki/Corpus_linguistics) de análise bem estruturado e suficientemente completo para cada alvo definido pelas curadoriais. Curadores experientes também são *experts* e podem oferecer seus conhecimentos aos novos curadores.
 
-## Objetivo
-Até que a equipe deixe de ser flutuante, as metas permanecerão meio indefinidas. Por hora as principais:
+[Clique aqui](https://okfn-brasil.github.io/queriDO/) para testar as separatas elecandas para a *Curadoria da ciclovia Tim Maia*.
 
-1. Criar uma metadologia para obter matérias de um Diário Oficial (por hora do Rio de Janeiro e assemelhados), dentro de um determinado escopo.
+Maiores detalhes ver um [breve histórico do projeto](_docs/README.md).
 
-2. Automatizar o que for possível da metodologia, garantindo fontes de matéria com máxima fidelidade (bater com o original publicado), em formato aberto (UTF-8 HTML) e bem estruturado (sem perda de informação estrutural tal como títulos, itens, seções, negritos, itálicos, tabelas, etc.).
+-----
 
-3. Criar metodologia para compensar perdas de estrutura (ex. perda de seções, títulos, identificadores, etc.) ou informação (ex. caso de PDF convertido por OCR).
+## Dinâmica de um ciclo de registros
 
-4. Criar convençes para armazenar aqui no *git* os originais fornecidos, e os textos processados para recuperação de estrutura.
+Dinâmica da formação de alvos e conteúdos neste projeto:
 
-5. Criar convençes para a marcação adicional: extração de endereços (ex. CEP e rua), CPF, CNPJ, RG, nomes de empresa, códigos de contrato, citações de leis, etc.
+**Passo-1**. **Formação de uma _curadoria_ e seu _alvo_**. Um grupo de pessoas (curadores), acolhido por pelo menos um [membro da OKBr](https://br.okfn.org/membros/). A curadoria recebe um registro formal [nesta planilha](data/curadoria.csv) (editável [neste GDoc](https://docs.google.com/spreadsheets/d/1-LqoLFCMPWs0UHrY3WXSV10S9eYIxpshOzDXsIFXlJA/edit#gid=770195002)) e se apresenta com a lista de participantes e todos os detalhes sobre motivações e metas, [num relatório como este](_docs/README.md).
 
-6. Automatizar o que for possível no processo de marcação adicional.
+**Passo-2**.  **Testes, prospecção e avaliação da viabilidade**. Com apoio do grupo de *experts*, a nova curadoria faz testes de prospecção (usando outras ferramentas como o Diário Livre, os diversos diários oficiais, etc.) e define com mais precisão seu alvo, reformulando-os se necessário. Com os testes também refina o seu relatório e "bate martelo" sobre qual Diário Oficial e quais anos prospectar.
 
-## Origem e motivações do projeto
+**Passo-3**.  **Resgate dos origiais**. A equipe de *experts* recupera os conteúdos oficiais (separatas de Diários Oficiais) de forma o mais fiel possível, armazenando no *git* do presente projeto todos os [conteúdos originais](conteudo/original).
 
-O [acidente da ciclovia Tim Maia, obra da Concremat](http://brasil.elpais.com/brasil/2016/04/21/politica/1461256688_847248.html), fez com que um grupo de amigos passasse a noite tentando extrair do diário oficial da cidade do Rio informações sobre os contratos do município com a empreiteira. A tarefa hercúlea nos alertou para o quão valioso seria um script capaz de extrair sistematicamente informações do diário e torná-las verdadeiramente abertas. As possibilidades a partir daí seriam inúmeras. Em excel, gráfico, verso e prosa.
+**Passo-4**.  **Filtragen**. A equipe de *experts* avalia a melhor forma de "limpar" os originais e armazená-los como   [conteúdos filtrados](conteudo/filtrado). Com este conteúdo disponibilizado em ferramentas de busca e visualização, torna-se possível decidir quais elementos precisam ser marcados. Nesta etapa a *curadoria*  também já pode se manifestar sobre a fidelidade e completeza do material obtido.
 
-O Diário Oficial é como um blog, importantíssimo, mas que "ninguém" lê.
-Um Diário que é "aberto" apenas por alguns usuários descontentes.
-Na tentativa de torná-lo aberto e reutilizável, não só no formato, mas na linguagem, iniciamos uma saga não só de programação, mas de idealização desse projeto que chamamos carinhosamente de *"nosso querido diário oficial"* e que chamou a atenção do Govlab em NY,  onde foi realizado um *coaching*, entre agosto e outubro de 2016.  
+**Passo-5**.  **Marcação**. A equipe de *experts* avalia a melhor forma de "marcar" os conteúdos filtrados para destacar e organizar com precisão todas as informações a serem extraídas e relacionadas entre si.
 
-Entre agosto e setembro de 2016 houve contato da Bruna e do Henrique, do grupo de amigos, com a [OKBr](http://br.okfn.org/)... Até que o Peter ficou sabendo, e sugeriu unificar os requisitos do *QueriDO* com o [Diário Livre](http://devcolab.each.usp.br/do/), desenvolvido pelo COLAB-USP e apoiado pela OKBr, criando aqui no *git coletivo `okfn-brasil`* uma iniciativa mais ampla... Partes do código do Diário Livre,  como o [trazdia](https://github.com/andresmrm/trazdia) do Andres é semelhante ao que vinham desenvolvendo no *QueriDO*.
+**Passo-6**.  **Revisão do levantamento e da marcação**. A curadoria avalia o material marcado e seu uso, eventualmente solicitando mais conteúdos, por exemplo matérias citadas (adendos que citam contratos, leis que citam outras leis, etc.)
 
-No final de dezembro de 2016, com chegada de um voluntário animado, o Marco, decidimos criar um plano de metas para 2017: é o que está resumido na seção acima dos objetivos.
+**Passo-7**.  **Relatório da curadoria**. Em posse de toda a informação a *curadoria* emite um parecer e um ou mais relatórios onde faz uso das informações para as finalidades desejadas.
 
-## Situação (*roadmap*)
+Todos os conteúdos, originais e marcados, são preservados no git por tempo indeterminado (horizonte de *anos*). O ciclo pode se repetir para aprofundamentos ou ampliação das pesquisas.
 
-Apesar de não termos documentado, nos sentimos bem maduros quanto à metodologia do item 1 dos objetivos, e já fizemos vários testes de automação para o item 2. A meta em janeiro de 2017  é fechar a automação (provavelmente tudo em Python) e manter o fluxo de processamento num banco PostgreSQL, gravando no *git* apenas documentos originais e finais.
+NOTA: os passos 3 a 5 são indicados nas visualizações de conteúdo dos Diários Oficiais como "resultantes de processameto" 1, 2 ou 3 respectivamente.
+
+------
+
+## Licensas livres
+
+Esta iniciativa é mantida pela [Plataforma de Projetos da OKBr](https://br.okfn.org/projetos/).
+
+Todos os softwares e conteúdos deste projeto são livres, em conformidade com a [OpenDefinition](http://openDefinition.org/od/2.0/pt-br/):
+
+* *conteúdos dos Diários Oficiais* são [implicitamente de domínio público (licensa **CC0**)](https://github.com/ppKrauss/licenses/blob/master/reports/implied-lex-BR-v1.md).
+
+* os *softwares* produzidos pela OKBr e seus colaboradores do projeto queriDO receberam [licensa **MIT**](https://opensource.org/licenses/MIT).
+
+* os *demais conteúdos* receberam licensa [**CC-BY-3.0**](https://creativecommons.org/licenses/by/3.0/br/)
