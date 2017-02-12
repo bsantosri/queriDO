@@ -1,5 +1,6 @@
-`queriDO` ou  **"nosso Querido Diario Oficial"**... Por uma versão *machine-readable* do Diário Oficial do Município do Rio de Janeiro.
-[Clique aqui para testar!](https://okfn-brasil.github.io/queriDO/).
+Descrição informal e detalhes adicionais sobre o **Projeto `queriDO`** ou  **"nosso Querido Diario Oficial"**.
+
+(lixo **revisar** e linkar com [curadoria001](../report/curadoria001.md) e cia)
 
 ## Equipe
 
