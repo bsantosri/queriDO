@@ -1,8 +1,8 @@
 ---
-title: Desabamento da ciclovia Tim Maia (RJ)
+title: Apresentação da Curadoria 001
 version: 0.1
 version_status: REVISION
-endorsed_n: 1
+endorsed_n: 0
 endorsed_status: waiting
 layout: page
 ---
@@ -33,8 +33,14 @@ Entre agosto e setembro de 2016 houve contato da Bruna e do Henrique, do grupo d
 
 No final de dezembro de 2016, com chegada de um voluntário animado, o Marco, decidimos criar um plano de metas para 2017: é o que está resumido na seção acima dos objetivos.
 
-##  Levantamentos
+##  Levantamentos preliminares
 
 Foram pesquisadas todas as edições do Diário Oficial do Município (DOM) do Rio de Janeiro, e encontradas citações da empresa responsável pela construção da ciclovia, a **CONCREMAT, de 2012 a 2016**. Apenas separatas com alguma citação explícita foram requisitadas, para primeira análise e triagem.
 
+## Endossos e revisores desta página
 
+Além dos [revisores listados no histórico desta página](https://github.com/okfn-brasil/queriDO/commits/master/report/curadoria001.md), curdores que endossam o seu conteúdo:
+
+* Fulano
+* ...
+* Você curador: edite o arquivo para acrescentar **seu nome aqui**, precisamos no mínimo 2 curadores **endossando** (atestando que concorda com todo o contedo acima) para iniciar o processo.
