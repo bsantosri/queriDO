@@ -1,10 +1,10 @@
 `queriDO` ou  **"nosso Querido Diario Oficial"**... Por uma versão *machine-readable* dos Diários Oficiais do Brasil. Municipais, estaduais e da união.
 
-A **comunudade mantenedora deste projeto** é formada por fois grupos:
+A **comunidade mantenedora deste projeto** é formada por dois grupos:
 
 * **curadorias**: definem os "alvos", estabelcem para quais assuntos e diários oficiais desejam voltar seus olhares, fazer suas explorações, e mais tarde entregar seus relatórios e pareceres.
 
-* **experts**: programadores, linguístas, ou simples entusiastas do [data scraping](https://en.wikipedia.org/wiki/Data_scraping), colaborador, interessados em ajudar a curadoria a achar a "agulha no palheiro", e preparar milhares de separatas de diários oficiais para constituir um [corpus textual](https://en.wikipedia.org/wiki/Corpus_linguistics) de análise bem estruturado e suficientemente completo para cada alvo definido pelas curadoriais. Curadores experientes também são *experts* e podem oferecer seus conhecimentos aos novos curadores.
+* **experts**: programadores, linguístas, ou simples entusiastas do [data scraping](https://en.wikipedia.org/wiki/Data_scraping), colaboradores, interessados em ajudar a curadoria a achar a "agulha no palheiro", e preparar milhares de separatas de diários oficiais para constituir um [corpus textual](https://en.wikipedia.org/wiki/Corpus_linguistics) de análise bem estruturado e suficientemente completo para cada alvo definido pelas curadoriais. Curadores experientes também são *experts* e podem oferecer seus conhecimentos aos novos curadores.
 
 [Clique aqui](https://okfn-brasil.github.io/queriDO/) para testar as separatas elecandas para a *Curadoria da ciclovia Tim Maia*.
 
@@ -24,7 +24,7 @@ Dinâmica da formação de alvos e conteúdos neste projeto:
 
 **Passo-4**.  **Resgate dos origiais**. A equipe de *experts* recupera os conteúdos oficiais (separatas de Diários Oficiais) de forma o mais fiel possível, armazenando no *git* do presente projeto todos os [conteúdos originais](conteudo/original).
 
-**Passo-5**.  **Filtragen**. A equipe de *experts* avalia a melhor forma de "limpar" os originais e armazená-los como   [conteúdos filtrados](conteudo/filtrado). Com este conteúdo disponibilizado em ferramentas de busca e visualização, torna-se possível decidir quais elementos precisam ser marcados. Nesta etapa a *curadoria*  também já pode se manifestar sobre a fidelidade e completeza do material obtido.
+**Passo-5**.  **Filtragen**. A equipe de *experts* avalia a melhor forma de "limpar" os originais e armazená-los como [conteúdos filtrados](conteudo/filtrado). Com este conteúdo disponibilizado em ferramentas de busca e visualização, torna-se possível decidir quais elementos precisam ser marcados. Nesta etapa a *curadoria*  também já pode se manifestar sobre a fidelidade e completeza do material obtido.
 
 **Passo-6**.  **Marcação**. A equipe de *experts* avalia a melhor forma de "marcar" os conteúdos filtrados para destacar e organizar com precisão todas as informações a serem extraídas e relacionadas entre si.
 
@@ -42,7 +42,7 @@ Os *passos 4, 5 e 6* descritos acima são indicados nas visualizações como "re
 
 ![](_docs/assets/tela1v0.1.png)
 
-Os termos coloridos são justamente os elementos marcados: definem em contexto adequado a valores, citações, códigos ou nomes relevates para a análise e cruzamento de dados no diário oficial. Softwares adionais podem compor planilhas de dados extraídos de dezenas ou milhares desses registros.
+Os termos coloridos são justamente os elementos marcados: definem em contexto adequado a valores, citações, códigos ou nomes relevates para a análise e cruzamento de dados no diário oficial. Softwares adicionais podem compor planilhas de dados extraídos de dezenas ou milhares desses registros.
 
 ------
 
