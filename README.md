@@ -16,23 +16,33 @@ Maiores detalhes ver um [breve histórico do projeto](_docs/README.md).
 
 Dinâmica da formação de alvos e conteúdos neste projeto:
 
-**Passo-1**. **Formação de uma _curadoria_ e seu _alvo_**. Um grupo de pessoas (curadores), acolhido por pelo menos um [membro da OKBr](https://br.okfn.org/membros/). A curadoria recebe um registro formal [nesta planilha](data/curadoria.csv) (editável [neste GDoc](https://docs.google.com/spreadsheets/d/1-LqoLFCMPWs0UHrY3WXSV10S9eYIxpshOzDXsIFXlJA/edit#gid=770195002)) e se apresenta com a lista de participantes e todos os detalhes sobre motivações e metas, [num relatório como este](_docs/README.md).
+**Passo-1**. **Manifestação de interesse**. Um grupo de pessoas (curadores) entra em contato com o projeto e  [se registra nesta planilha](data/curadoria.csv) (editável [neste GDoc](https://docs.google.com/spreadsheets/d/1-LqoLFCMPWs0UHrY3WXSV10S9eYIxpshOzDXsIFXlJA/edit#gid=770195002)), estabelecendo informalmente uma denominação e um alvo.
 
-**Passo-2**.  **Testes, prospecção e avaliação da viabilidade**. Com apoio do grupo de *experts*, a nova curadoria faz testes de prospecção (usando outras ferramentas como o Diário Livre, os diversos diários oficiais, etc.) e define com mais precisão seu alvo, reformulando-os se necessário. Com os testes também refina o seu relatório e "bate martelo" sobre qual Diário Oficial e quais anos prospectar.
+**Passo-2**. **Formalização da _curadoria_ e seu _alvo_**. Acolhidos por pelo menos um [membro da OKBr](https://br.okfn.org/membros/), que auxilia o grupo expor mais detalhes sobre motivações e metas, [num relatório inicial como este](report/curadoria001.md) (`report/curadoria001.md`). Havendo necessidade os dados da planilha são modificados para refletir melhor o expresso pelo relatório.
 
-**Passo-3**.  **Resgate dos origiais**. A equipe de *experts* recupera os conteúdos oficiais (separatas de Diários Oficiais) de forma o mais fiel possível, armazenando no *git* do presente projeto todos os [conteúdos originais](conteudo/original).
+**Passo-3**.  **Testes, prospecção e avaliação da viabilidade**. Com apoio do grupo de *experts*, a nova curadoria faz testes de prospecção (usando outras ferramentas como o Diário Livre, os diversos diários oficiais, etc.) e define com mais precisão seu alvo, reformulando-os se necessário. Com os testes também refina o seu relatório e "bate martelo" sobre qual Diário Oficial e quais anos prospectar.
 
-**Passo-4**.  **Filtragen**. A equipe de *experts* avalia a melhor forma de "limpar" os originais e armazená-los como   [conteúdos filtrados](conteudo/filtrado). Com este conteúdo disponibilizado em ferramentas de busca e visualização, torna-se possível decidir quais elementos precisam ser marcados. Nesta etapa a *curadoria*  também já pode se manifestar sobre a fidelidade e completeza do material obtido.
+**Passo-4**.  **Resgate dos origiais**. A equipe de *experts* recupera os conteúdos oficiais (separatas de Diários Oficiais) de forma o mais fiel possível, armazenando no *git* do presente projeto todos os [conteúdos originais](conteudo/original).
 
-**Passo-5**.  **Marcação**. A equipe de *experts* avalia a melhor forma de "marcar" os conteúdos filtrados para destacar e organizar com precisão todas as informações a serem extraídas e relacionadas entre si.
+**Passo-5**.  **Filtragen**. A equipe de *experts* avalia a melhor forma de "limpar" os originais e armazená-los como   [conteúdos filtrados](conteudo/filtrado). Com este conteúdo disponibilizado em ferramentas de busca e visualização, torna-se possível decidir quais elementos precisam ser marcados. Nesta etapa a *curadoria*  também já pode se manifestar sobre a fidelidade e completeza do material obtido.
 
-**Passo-6**.  **Revisão do levantamento e da marcação**. A curadoria avalia o material marcado e seu uso, eventualmente solicitando mais conteúdos, por exemplo matérias citadas (adendos que citam contratos, leis que citam outras leis, etc.)
+**Passo-6**.  **Marcação**. A equipe de *experts* avalia a melhor forma de "marcar" os conteúdos filtrados para destacar e organizar com precisão todas as informações a serem extraídas e relacionadas entre si.
 
-**Passo-7**.  **Relatório da curadoria**. Em posse de toda a informação a *curadoria* emite um parecer e um ou mais relatórios onde faz uso das informações para as finalidades desejadas.
+**Passo-7**.  **Revisão do levantamento e da marcação**. A curadoria avalia o material marcado e seu uso, eventualmente solicitando mais conteúdos, por exemplo matérias citadas (adendos que citam contratos, leis que citam outras leis, etc.)
+
+**Passo-8**.  **Relatório da curadoria**. Em posse de toda a informação a *curadoria* emite um parecer e um ou mais relatórios onde faz uso das informações para as finalidades desejadas.
 
 Todos os conteúdos, originais e marcados, são preservados no git por tempo indeterminado (horizonte de *anos*). O ciclo pode se repetir para aprofundamentos ou ampliação das pesquisas.
 
-NOTA: os passos 3 a 5 são indicados nas visualizações de conteúdo dos Diários Oficiais como "resultantes de processameto" 1, 2 ou 3 respectivamente.
+## Avaliando conteúdos
+
+Testes básicos de visualização podem ser realizados em https://okfn-brasil.github.io/queriDO/
+
+Os *passos 4, 5 e 6* descritos acima são indicados nas visualizações como "resultantes" 1, 2 e 3 respectivamente.
+
+![](_docs/assets/tela1v0.1.png)
+
+Os termos coloridos são justamente os elementos marcados: definem em contexto adequado a valores, citações, códigos ou nomes relevates para a análise e cruzamento de dados no diário oficial. Softwares adionais podem compor planilhas de dados extraídos de dezenas ou milhares desses registros.
 
 ------
 
