@@ -9,11 +9,6 @@ import csv
 import io
 import sys, getopt
 
-# variables
-htmParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
-              'load_tree.php?edi_id={0}'
-lnkParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
-              'mostrar.htm?id={0}&edi_id={1}'
 
 def main(argv):
 
@@ -68,7 +63,7 @@ def getedition(ediParam, store):
     materias    = []
 
     # http response
-    response    = requests.get(htmParam.format(ediParam))
+    response    = requests.get(HTMPARAM.format(ediParam))
     respList    = response.content.split('\n')
     #respList    = open('3168_response.txt')
 
@@ -92,7 +87,7 @@ def getedition(ediParam, store):
                                  matTitulo=matTitulo,
                                  matId=matId,
                                  matEdi=ediParam,
-                                 matLink=lnkParam.format(matId,ediParam)))
+                                 matLink=LNKPARAM.format(matId,ediParam)))
         elif 'addChildren(' in row:
             paiKey      = row[0:row.find('.addChildren')]
             childVals   = row[row.find('([')+2:row.find('])')].split(',')
@@ -113,7 +108,7 @@ def getedition(ediParam, store):
     # Actually, we shouldn't even be outputting them to files here. We should instead output the
     # list of materias, and defer the job of writing the files to a caller.
     if store:
-        with open('../../data/do-info/' + str(ediParam) + '.csv', 'wb') as csvfile:
+        with open('../data/do-info/' + str(ediParam) + '.csv', 'wb') as csvfile:
             fieldnames = ['matEdi','matId','matPathVal','matTitulo','matLink']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()

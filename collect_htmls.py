@@ -1,5 +1,4 @@
-import getMateria
-import getHtm
+import collector
 import sys, getopt
 
 # Test script. Given a metadata file with editions and document IDs, get all documents in it.
@@ -58,7 +57,7 @@ if __name__ == "__main__":
         ediParam = entry_address[0]
         matParam = entry_address[1].replace('\n', '')
         link = lnkParam.format(ediParam, matParam)
-        htmlfile = getMateria.extract_html_from_link(link)
+        htmlfile = collector.getDocument.extract_html_from_link(link)
         print('Outputting html to', output_path + str(matParam) + '.html')
         f = open(output_path + str(matParam) + '.html', 'w')
         for line in htmlfile:

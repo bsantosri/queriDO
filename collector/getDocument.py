@@ -9,10 +9,7 @@ import unicodedata
 import sys, getopt
 import getHtm
 import json
-
-# variables
-lnkParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
-              'mostrar.htm?id={1}&edi_id={0}'
+import unittest
 
 
 def main(argv):
@@ -118,16 +115,6 @@ def extract_tokens(materia):
     document = document.replace(u'\u000A', '')
     document = document.replace(u'\u0009', '')
     encoded_document = document.encode('utf-8')
-    # First and last strings are "Imprimir". The penultimate line is also not needed.
-    #del document[0]
-    #del document[-1]
-    #del document[-1]
-    #del document[-1]
-    #converted_docs = []
-    #for token in document:
-    #    converted_docs.append(token.encode('utf-8'))
-    #enriched_output.extend(document)
-    #return enriched_output
     matPathVal = materia['matPathVal']
     matTitulo = materia['matTitulo']
     output = matPathVal + " " + matTitulo + " " + encoded_document
