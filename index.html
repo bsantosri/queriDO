@@ -81,7 +81,7 @@
 	    mklista=null;
 	    $('#materia').html( aLista );
 
-	    var availableTags = materias.map(function(item) {  item = String(item);  });
+	    var availableTags = materias.map(function(item) {  return String(item);  });
 
 	    $( "#enterTag" ).autocomplete({
 		//source: availableTags,
