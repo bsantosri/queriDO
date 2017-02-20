@@ -4,9 +4,9 @@ A **comunidade mantenedora deste projeto** é formada por dois grupos:
 
 * **curadorias**: definem os "alvos", estabelcem para quais assuntos e diários oficiais desejam voltar seus olhares, fazer suas explorações, e mais tarde entregar seus relatórios e pareceres.<br/>PS: não há restrição à participação em mais de uma curadoria.
 
-* **experts**: entusiastas de dados abertos e [*data scraping*](https://en.wikipedia.org/wiki/Data_scraping), ajudando  a *curadoria* a achar a "agulha no palheiro", e preparar milhares de *separatas* de diários oficiais para constituir um [*corpus* textual](https://en.wikipedia.org/wiki/Corpus_linguistics) de análise: bem estruturado e suficientemente completo para cada *alvo* definido pelas *curadoriais*.  <br/>PS: um _expert_ pode também ser membro de uma _curadoria_; um subconjunto dos *experts*  [contribui também no desenvolvimento](https://github.com/okfn-brasil/queriDO/graphs/contributors) do software do projeto.
+* **experts**: entusiastas de dados abertos e [*data scraping*](https://en.wikipedia.org/wiki/Data_scraping), ajudando  a *curadoria* a achar a "agulha no palheiro", e preparar milhares de *separatas* de diários oficiais para constituir um [*corpus* textual](https://en.wikipedia.org/wiki/Corpus_linguistics) de análise: bem estruturado e suficientemente completo para cada *alvo* definido pelas *curadoriais*.  <br/>PS: um _expert_ pode também ser membro de uma _curadoria_; existe um subconjunto dos *experts*  que [contribui também no desenvolvimento](https://github.com/okfn-brasil/queriDO/graphs/contributors) do software do projeto.
 
-[Clique aqui](https://okfn-brasil.github.io/queriDO/) para testar as separatas elecandas para a *Curadoria da ciclovia Tim Maia*.
+[Clique aqui](https://okfn-brasil.github.io/queriDO/) para testar as separatas elencadas pela [*Curadoria da ciclovia Tim Maia*](report/curadoria001.md).
 
 Maiores detalhes ver um [breve histórico do projeto](_docs/README.md).
 
