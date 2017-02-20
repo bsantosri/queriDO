@@ -24,14 +24,15 @@ echo "
 RODANDO INSERTS!
 ";
 
+$st = $db->prepare("INSERT INTO content (urn_do,content,info) VALUES (:urn,:content,(:info)::text::jsonb)");
 
 foreach (scandir($dir) as $f) if (preg_match('/^(.+)\.html$/',$f,$m)) {
-	$urn = "br;rj;rio.janeiro:gov-exe:2015-02-02:materia:$m[1]";
+$id=0+$m[1]; // must be int
+	$urn = "br;rj;rio.janeiro:gov-exe:2015-02-02:materia:$id";
 	$content = file_get_contents("$dir/$f");
-	$st = $db->prepare("INSERT INTO content (urn_do,content,info) VALUES (:urn,:content,to_jsonb(:info))");
-	$res = $st->execute([ "urn" => $urn, "content" => $content, "info"=>"{\"do_materia\":$m[1],\"do_data\":'2017-02-02'}" ]);
+	$res = $st->execute([ "urn" => $urn, "content" => $content, "info"=>"{\"do_materia_id\":$id,\"do_data\":\"2017-02-02\"}" ]);
 	$res = $res? "(sucesso)": "(FALHOU, talvez já exista)";
-	echo "\n-- matéria $m[1] = $res";
+	echo "\n-- matéria $id= $res";
 }
 echo "\n-- fim, mas falta fazer UPDATE para carregar o cache, use o comando
 

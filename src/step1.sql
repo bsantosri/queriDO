@@ -57,20 +57,23 @@ CREATE OR REPLACE FUNCTION content_count(xml)
   -- Standard "check and count" analysis of content table.
   --
 RETURNS JSONb AS $func$
-
-   SELECT remove_nulls(to_jsonb(t)) 
-   FROM (SELECT 
-    countword(xpath('//cite/@class',$1)::text[]) AS cite,
-    countword(xpath('//mark/@class',$1)::text[]) AS mark,
-    countword(xpath('//data/@class',$1)::text[]) AS data,
-    countword(xpath('//time/@class',$1)::text[]) AS time			 
-   ) t;
+   SELECT newkx || jsonb_build_object('kx_n',jsonb_object_keys_count(newkx))
+   FROM (
+      SELECT remove_nulls(to_jsonb(t)) as newkx
+      FROM (SELECT
+        countword(xpath('//cite/@class',$1)::text[]) AS cite,
+        countword(xpath('//mark/@class',$1)::text[]) AS mark,
+        countword(xpath('//data/@class',$1)::text[]) AS data,
+        countword(xpath('//time/@class',$1)::text[]) AS time			 
+      ) t
+   ) t2;
 $func$ LANGUAGE sql IMMUTABLE;
+
 
 DROP VIEW IF EXISTS vw_content_rich;
 CREATE VIEW vw_content_rich AS
    SELECT * FROM (
        SELECT *, jsonb_object_keys_count(kx) AS kx_keys FROM content
-   ) t  
+   ) t
    WHERE  kx_keys>1
 ;
