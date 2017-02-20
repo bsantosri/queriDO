@@ -69,11 +69,10 @@ RETURNS JSONb AS $func$
    ) t2;
 $func$ LANGUAGE sql IMMUTABLE;
 
-
-DROP VIEW IF EXISTS vw_content_rich;
-CREATE VIEW vw_content_rich AS
-   SELECT * FROM (
-       SELECT *, jsonb_object_keys_count(kx) AS kx_keys FROM content
-   ) t
-   WHERE  kx_keys>1
+DROP VIEW IF EXISTS vw_content;
+CREATE VIEW vw_content AS
+   SELECT *, 
+         (kx->>'kx_n')::int AS kx_n,
+         (info->>'do_materia_id')::int AS materia_id
+   FROM content
 ;
