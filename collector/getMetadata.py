@@ -57,7 +57,6 @@ def read_hostile_text(encoded_text):
     return None
 
 def getedition(ediParam, store):
-
     # Keep a dictionary of folders and documents
     folders     = []
     materias    = []

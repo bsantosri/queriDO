@@ -7,9 +7,7 @@ from bs4 import BeautifulSoup
 import pkg_resources
 import unicodedata
 import sys, getopt
-import getHtm
 import json
-import unittest
 
 
 def main(argv):
@@ -70,12 +68,10 @@ def usage():
 def soupify(link):
     # http response
     response    = requests.get(link)
-    rawtext     = response.content.replace('\n', ' ').replace('\r', '')
+    #rawtext     = response.content.replace('\n', ' ').replace('\r', '')
+    rawtext     = response.content
     soup        = BeautifulSoup(rawtext, 'html5lib')
     return soup
-
-def pretty_print(soup):
-    return soup.prettify()
 
 def extract_json(materia):
     soup = soupify(materia['matLink'])
@@ -122,17 +118,17 @@ def extract_tokens(materia):
 
 def extract_html(materia):
     soup = soupify(materia['matLink'])
-    return pretty_print(soup).encode('utf-8')
+    return soup.prettify().encode('utf-8')
 
 def extract_html_from_link(link):
     soup = soupify(link)
-    return pretty_print(soup).encode('utf-8')
+    return soup.prettify()
 
 
 if __name__ == "__main__":
     ediParam, matParam, store, path, output = main(sys.argv[1:])
 
-    materias = getHtm.getedition(ediParam, False)
+    materias = getMetadata.getedition(ediParam, False)
     for materia in materias:
         if matParam == materia['matId']:
             if output == 'json':
