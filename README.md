@@ -40,7 +40,7 @@ Testes básicos de visualização podem ser realizados em https://okfn-brasil.gi
 
 Os *passos 4, 5 e 6* descritos acima são indicados nas visualizações como "resultantes" 1, 2 e 3 respectivamente.
 
-![](_docs/assets/tela1v0.1.png)
+![](docs/assets/tela1v0.1.png)
 
 Os termos coloridos são justamente os elementos marcados: definem em contexto adequado a valores, citações, códigos ou nomes relevates para a análise e cruzamento de dados no diário oficial. Softwares adicionais podem compor planilhas de dados extraídos de dezenas ou milhares desses registros.
 
