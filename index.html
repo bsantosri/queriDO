@@ -8,8 +8,8 @@
   <style type="text/css">
 	mark { background-color: #D55;}
 	data { background-color: orange;}
-	cite { background-color: green; }
-	date { background-color: #74C; }
+	cite { background-color: #6F6; }
+	time { background-color: #74C; }
 
 	mark.organization_name {background-color: red;}
 	cite.contract { background-color: #8B0; }
@@ -96,6 +96,7 @@
 
   function pegaMateria(x){
         if (!x) return;
+	x = String(x).replace('*','');
 	var url = 'https://okfn-brasil.github.io/queriDO/content'; // online
 	if (window.location.hostname.indexOf("github.io") == -1)
 		url = './content';  // localhost
@@ -105,6 +106,7 @@
   }
   function pegaMateriaObj(obj){
 	var x=$(obj).text();
+	x = String(x).replace('*','');
 	$("#enterTag").val( x );
 	pegaMateria(x);
 	return false;
@@ -136,15 +138,11 @@
 
 LEGENDA DO <b>MARCADO</b>:
 <ul>
-  <li class="organization_name">organization_name (alvo da curadoria)</li>
-  <li class="organization_vatID">organization_vatID</li>
-  <li class="valor_cite">valor_cite</li>
-  <li class="lexml_cite">lexml_cite</li>
-  <li class="govProcess_cite">govProcess_cite</li>
-
-  <li class="contract_cite">contract_cite</li>
-  <li class="matricula_cite">matricula_cite</li>
-  <li class="date_cite">date_cite</li>
+  <li> <mark class="organization_name"><code>mark</code> organization_name</mark> (alvo da curadoria)</li>
+  <li> <mark class="organization_vatID">outra <code>mark</code></mark></li>
+  <li> <cite class="any"><code>cite</code> para citações de certificados, normas ou documentos</cite></li>
+  <li> <data class="any"><code>data</code> para registros e dados em geral</data></li>
+  <li> <time class="any"><code>time</code> para citar datas</time></li>
 </ul>
 
 </body>
