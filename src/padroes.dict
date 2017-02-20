@@ -1,3 +1,0 @@
-{'instrumento': 'INSTRUMENTO', \
-'consorcio': '#Cons[óo]rcio\s+Concremat.Arcadis(?:\s+Logos)?(?:\s+S.A)?|CONCREMAT(?:\s+ENGENHARIA)?(\s+E\s+TECNOLOGIA)?(\s+S.A)?#us' \
-}

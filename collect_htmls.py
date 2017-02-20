@@ -1,12 +1,8 @@
-import getMateria
-import getHtm
+import collector
+from collector import getDocument
 import sys, getopt
 
 # Test script. Given a metadata file with editions and document IDs, get all documents in it.
-
-# variables
-lnkParam    = 'http://doweb.rio.rj.gov.br/do/navegadorhtml/' \
-              'mostrar.htm?id={1}&edi_id={0}'
 
 def main(argv):
 
@@ -57,8 +53,8 @@ if __name__ == "__main__":
         entry_address = entry.split(',')
         ediParam = entry_address[0]
         matParam = entry_address[1].replace('\n', '')
-        link = lnkParam.format(ediParam, matParam)
-        htmlfile = getMateria.extract_html_from_link(link)
+        link = collector.LNKPARAM.format(ediParam, matParam)
+        htmlfile = getDocument.extract_html_from_link(link)
         print('Outputting html to', output_path + str(matParam) + '.html')
         f = open(output_path + str(matParam) + '.html', 'w')
         for line in htmlfile:
