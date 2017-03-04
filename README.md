@@ -47,7 +47,7 @@ Os *passos 4, 5 e 6* descritos acima são indicados nas visualizações como "re
 Os termos coloridos são justamente os elementos marcados: definem em contexto adequado a valores, citações, códigos ou nomes relevates para a análise e cruzamento de dados no diário oficial. Softwares adicionais podem compor planilhas de dados extraídos de dezenas ou milhares desses registros.
 
 ## Documentação do projeto
-Ver []().
+Ver [pasta `docs`](docs/README.md).
 
 ------
 
