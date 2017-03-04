@@ -13,7 +13,7 @@ Registro da matéria original, sua filtragem e marcação.
 
 * Passo-2: filtrar. Em geral será automático sem necessidade de intervenção). ![](assets/tela2-filtrado-380px.png)
 
-* Passo-3: marcar. As regras de marcação precisam ser revisadas pela curadoria, e eventualmente algumas marcações precisam ser feitas manualmente. ![](assets/tela1v0.1-380px.png)
+* Passo-3: marcar. As regras de marcação precisam ser revisadas pela curadoria, e eventualmente algumas marcações precisam ser feitas manualmente.<br/> ![](assets/tela1v0.1-380px.png)
 
 
 ## Repositório QueriDO
