@@ -1,6 +1,6 @@
 **"Projeto Nosso Querido Diario Oficial"**, abreviadamente **`queriDO`**.  
 
-O projeto estabelece uma metodologia para recuperação da informação registrada nos diários oficiais (''DO''s), a partir dos interesses e metas de um coletivo, que se responsabiliza pela tutela dessas informações e por manifestar publicamente o seu parecer em relatórios fundamentados nos ''DO''s.
+O projeto estabelece uma metodologia para recuperação da informação registrada nos diários oficiais (*DO*s), a partir dos interesses e metas de um coletivo, que se responsabiliza pela tutela dessas informações e por manifestar publicamente o seu parecer em relatórios fundamentados nos *DO*s.
 
 A **comunidade mantenedora deste projeto** é formada por dois grupos:
 
