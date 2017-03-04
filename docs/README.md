@@ -1,40 +1,33 @@
-Descrição informal e detalhes adicionais sobre o **Projeto `queriDO`** ou  **"nosso Querido Diario Oficial"**.
+# Documentação
 
-(lixo **revisar** e linkar com [curadoria001](../report/curadoria001.md) e cia)
+A metodologia do projeto QueriDO tem seu foco na gestão de *relatórios* das curadorias e num *banco de dados* das matérias trazidas do Diário Oficial.
 
-## Equipe
+Quem traz as matérias originais é o *módulo TrazDia*, e então elas são preservadas no *Github* na pasta `content/original`. Em seguida os processos são assistidos:  quem faz a filtragem e reestruturação são os *módulos CleanDoc e StrutDoc*, e quem faz a marcação final é o *módulo MarkDoc*. Se por acaso um desses passos requerer intervenção humana, o resultado da intervenção é registrado no *Github*, complementando o `content/original`. Todo o restante, automatizado, é mantido em no banco de dados. As ferramentas do *módulo de Pesquisa* no banco de dados também permitem extração automatica de dados, gerando planilhas e outros formatos de dados para análise ou registro na forma de relatório.
 
-O projeto ainda "gratis" e inscipiente. Precisamos de voluntários.
+Por fim, os relatporios redigidos pela curadoria são armazenados na pasta `report`.
 
-Estamos aguardando a sua participação!  Participe para sentir a "mão-na-massa", dar sua opinião... E se gostar, escolha suas metas-pé-no-chão... E continue participando: mesmo que pouco, é importante preservar a frequência mínima de participação, de todos os envolvidos numa meta: sempre aparece mais um para ajudar, se ver os envolvidos por perto, acolhendo e tomando conta.
+## Tratamento primário
+Registro da matéria original, sua filtragem e marcação.
 
-## Objetivo
-Até que a equipe deixe de ser flutuante, as metas permanecerão meio indefinidas. Por hora as principais:
+* Passo-1: obter e conferir o original. O *módulo TrazDia* faz isso automaticamente.  ![](assets/tela3-original-380px.png)
 
-1. Criar uma metadologia para obter matérias de um Diário Oficial (por hora do Rio de Janeiro e assemelhados), dentro de um determinado escopo.
+* Passo-2: filtrar. Em geral será automático sem necessidade de intervenção). ![](assets/tela2-filtrado-380px.png)
 
-2. Automatizar o que for possível da metodologia, garantindo fontes de matéria com máxima fidelidade (bater com o original publicado), em formato aberto (UTF-8 HTML) e bem estruturado (sem perda de informação estrutural tal como títulos, itens, seções, negritos, itálicos, tabelas, etc.).
+* Passo-3: marcar. As regras de marcação precisam ser revisadas pela curadoria, e eventualmente algumas marcações precisam ser feitas manualmente. ![](assets/tela1v0.1.png)
 
-3. Criar metodologia para compensar perdas de estrutura (ex. perda de seções, títulos, identificadores, etc.) ou informação (ex. caso de PDF convertido por OCR).
 
-4. Criar convençes para armazenar aqui no *git* os originais fornecidos, e os textos processados para recuperação de estrutura.
+## Repositório QueriDO
 
-5. Criar convençes para a marcação adicional: extração de endereços (ex. CEP e rua), CPF, CNPJ, RG, nomes de empresa, códigos de contrato, citações de leis, etc.
+![](assets/repositorios01-380px.png)
 
-6. Automatizar o que for possível no processo de marcação adicional.
+## Módulos do QueriDO
 
-## Origem e motivações do projeto
 
-O [acidente da ciclovia Tim Maia, obra da Concremat](http://brasil.elpais.com/brasil/2016/04/21/politica/1461256688_847248.html), fez com que um grupo de amigos passasse a noite tentando extrair do diário oficial da cidade do Rio informações sobre os contratos do município com a empreiteira. A tarefa hercúlea nos alertou para o quão valioso seria um script capaz de extrair sistematicamente informações do diário e torná-las verdadeiramente abertas. As possibilidades a partir daí seriam inúmeras. Em excel, gráfico, verso e prosa.
+...
 
-O Diário Oficial é como um blog, importantíssimo, mas que "ninguém" lê.
-Um Diário que é "aberto" apenas por alguns usuários descontentes.
-Na tentativa de torná-lo aberto e reutilizável, não só no formato, mas na linguagem, iniciamos uma saga não só de programação, mas de idealização desse projeto que chamamos carinhosamente de *"nosso querido diário oficial"* e que chamou a atenção do Govlab em NY,  onde foi realizado um *coaching*, entre agosto e outubro de 2016.  
+## Busca em outros diários
+A organização dos materiais é feita a cada Diário Oficial, mas pode-se compor um relatório mais amplo vinculando duas curadorias de diários distintos.
 
-Entre agosto e setembro de 2016 houve contato da Bruna e do Henrique, do grupo de amigos, com a [OKBr](http://br.okfn.org/)... Até que o Peter ficou sabendo, e sugeriu unificar os requisitos do *QueriDO* com o [Diário Livre](http://devcolab.each.usp.br/do/), desenvolvido pelo COLAB-USP e apoiado pela OKBr, criando aqui no *git coletivo `okfn-brasil`* uma iniciativa mais ampla... Partes do código do Diário Livre,  como o [trazdia](https://github.com/andresmrm/trazdia) do Andres é semelhante ao que vinham desenvolvendo no *QueriDO*.
+![](assets/telaDiarioLivre01-380px.png)
 
-No final de dezembro de 2016, com chegada de um voluntário animado, o Marco, decidimos criar um plano de metas para 2017: é o que está resumido na seção acima dos objetivos.
 
-## Situação (*roadmap*)
-
-Apesar de não termos documentado, nos sentimos bem maduros quanto à metodologia do item 1 dos objetivos, e já fizemos vários testes de automação para o item 2. A meta em janeiro de 2017  é fechar a automação (provavelmente tudo em Python) e manter o fluxo de processamento num banco PostgreSQL, gravando no *git* apenas documentos originais e finais.

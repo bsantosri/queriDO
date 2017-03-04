@@ -1,5 +1,7 @@
 **"Projeto Nosso Querido Diario Oficial"**, abreviadamente **`queriDO`**.  
 
+O projeto estabelece uma metodologia para recuperação da informação registrada nos diários oficiais (''DO''s), a partir dos interesses e metas de um coletivo, que se responsabiliza pela tutela dessas informações e por manifestar publicamente o seu parecer em relatórios fundamentados nos ''DO''s.
+
 A **comunidade mantenedora deste projeto** é formada por dois grupos:
 
 * **curadorias**: definem os "alvos", estabelcem para quais assuntos e diários oficiais desejam voltar seus olhares, fazer suas explorações, e mais tarde entregar seus relatórios e pareceres.<br/>PS: não há restrição à participação em mais de uma curadoria.
@@ -34,15 +36,18 @@ Dinâmica da formação de alvos e conteúdos neste projeto:
 
 Todos os conteúdos, originais e marcados, são preservados no git por tempo indeterminado (horizonte de *anos*). O ciclo pode se repetir para aprofundamentos ou ampliação das pesquisas.
 
-## Avaliando conteúdos
+## Avaliando conteúdos dos DOs
 
-Testes básicos de visualização podem ser realizados em https://okfn-brasil.github.io/queriDO/ (ilustração abaixo).
+Testes básicos de visualização das matérias dos DOs podem ser realizados em https://okfn-brasil.github.io/queriDO/ (ilustração abaixo).
 
 Os *passos 4, 5 e 6* descritos acima são indicados nas visualizações como "resultantes" 1, 2 e 3 respectivamente.
 
 ![](docs/assets/tela1v0.1.png)
 
 Os termos coloridos são justamente os elementos marcados: definem em contexto adequado a valores, citações, códigos ou nomes relevates para a análise e cruzamento de dados no diário oficial. Softwares adicionais podem compor planilhas de dados extraídos de dezenas ou milhares desses registros.
+
+## Documentação do projeto
+Ver []().
 
 ------
 
