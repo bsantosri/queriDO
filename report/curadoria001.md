@@ -25,7 +25,7 @@ layout: page
 
 O [acidente da ciclovia Tim Maia, obra da Concremat](http://brasil.elpais.com/brasil/2016/04/21/politica/1461256688_847248.html), fez com que um grupo de amigos passasse a noite tentando extrair do diário oficial da cidade do Rio informações sobre os contratos do município com a empreiteira. A tarefa hercúlea nos alertou para o quão valioso seria um script capaz de extrair sistematicamente informações do diário e torná-las verdadeiramente abertas. As possibilidades a partir daí seriam inúmeras. Em excel, gráfico, verso e prosa.
 
-O Diário Oficial é como um blog, importantíssimo, mas que poucos lêem.
+O Diário Oficial é como um blog, importantíssimo, mas que poucos leem.
 Um Diário que é "aberto" apenas por alguns usuários descontentes.
 Na tentativa de torná-lo aberto e reutilizável, não só no formato, mas na linguagem, iniciamos uma saga não só de programação, mas de idealização desse projeto que chamamos carinhosamente de *"nosso querido diário oficial"* e que chamou a atenção do Govlab em NY,  onde foi realizado um *coaching*, entre agosto e outubro de 2016.
 
